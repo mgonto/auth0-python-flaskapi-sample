@@ -1,13 +1,19 @@
 import jwt
 import base64
+import os
 
 from functools import wraps
 from flask import Flask, request, jsonify, _request_ctx_stack
 from werkzeug.local import LocalProxy
 from dotenv import Dotenv
 
+env = None
 
-env = Dotenv('./.env')
+try:
+    env = Dotenv('./.env')
+except IOError:
+  env = os.environ
+
 app = Flask(__name__)
 app.debug = True
 

@@ -15,7 +15,6 @@ except IOError:
   env = os.environ
 
 app = Flask(__name__)
-app.debug = True
 
 # Authentication annotation
 current_user = LocalProxy(lambda: _request_ctx_stack.top.current_user)
@@ -79,4 +78,4 @@ def securedPing():
 
 
 if __name__ == "__main__":
-    app.run(port = int(os.environ.get('PORT', 5000)))
+    app.run(host='0.0.0.0', port = int(os.environ.get('PORT', 5000)))
